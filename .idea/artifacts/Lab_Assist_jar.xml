@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Lab_Assist:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab_Assist_jar</output-path>
+    <root id="archive" name="Lab_Assist.jar">
+      <element id="module-output" name="Lab_Assist" />
+      <element id="library" level="project" name="opencsv-5.6" />
+    </root>
+  </artifact>
+</component>
