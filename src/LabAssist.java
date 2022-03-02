@@ -20,12 +20,12 @@ public class LabAssist {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         LabAssist op = new LabAssist();
         op.menu();
     }
 
-    public void menu() throws IOException {
+    public void menu() throws Exception {
         String choice;
         do {
             System.out.println("Please pick a choice:");
@@ -33,6 +33,7 @@ public class LabAssist {
                     1.\tEnter Control Sample.
                     2.\tEnter Samples.
                     3.\tAdd Sample.
+                    4.\tEdit Sample.
                     0.\tQuit and save result.
                     """);
             choice = sc.next();
@@ -45,6 +46,9 @@ public class LabAssist {
                     break;
                 case "3":
                     addSample();
+                    break;
+                case "4":
+                    editSample();
                     break;
                 case "0":
                     writeToCsv();
@@ -111,6 +115,25 @@ public class LabAssist {
         sample.setDeltaDeltaCt(this.control_gene);
         sample.setResult();
         this.samples.add(sample);
+    }
+    public void editSample() throws Exception{
+        int choice;
+        System.out.println("Please Enter number of sample you want to edit.");
+        choice=sc.nextInt();
+        try{
+            System.out.println("Enter HKG Average Ct.");
+            float hkg_ct = sc.nextFloat();
+            System.out.println("Enter GIO Average Ct.");
+            float gio_ct = sc.nextFloat();
+            samples.get((choice-1)).setHkg_avg_ct(hkg_ct);
+            samples.get((choice-1)).setGio_avg_ct(gio_ct);
+            samples.get((choice-1)).setDetlaCt();
+            samples.get((choice-1)).setDeltaDeltaCt(control_gene);
+            samples.get((choice-1)).setResult();
+        }
+        catch (Exception e){
+            System.out.println("There is no such sample, return to main menu.");
+        }
     }
 
     public float avgCt(ArrayList<Float> arr) {
